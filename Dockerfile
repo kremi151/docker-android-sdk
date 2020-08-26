@@ -5,7 +5,7 @@ ENV ANDROID_BUILD_TOOLS_VERSION 30.0.0
 
 ENV ANDROID_HOME /opt/android-sdk
 
-RUN apk --no-cache add openjdk8 \
+RUN apk --no-cache add openjdk8 bash \
     && cd /opt \
     && wget https://dl.google.com/android/repository/commandlinetools-linux-6609375_latest.zip -O cmdline-tools.zip \
     && mkdir -p ${ANDROID_HOME}/cmdline-tools \
