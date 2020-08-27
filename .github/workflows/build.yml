@@ -5,17 +5,48 @@ on:
     branches: [ master ]
 
 jobs:
+
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Build and push Docker images
+      - name: Build and push base Docker image
         uses: docker/build-push-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: kremi151/android-sdk
-          tag_with_sha: true
+          path: sdk-base
+          tags: base
 
+      - name: Build and push android-28 Docker image
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: kremi151/android-sdk
+          path: sdk-platform
+          build_args: ANDROID_PLATFORM_VERSION=android-28
+          tags: android-28
+
+      - name: Build and push android-29 Docker image
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: kremi151/android-sdk
+          path: sdk-platform
+          build_args: ANDROID_PLATFORM_VERSION=android-29
+          tags: android-29
+
+      - name: Build and push android-30 Docker image
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: kremi151/android-sdk
+          path: sdk-platform
+          build_args: ANDROID_PLATFORM_VERSION=android-30
+          tags: android-30

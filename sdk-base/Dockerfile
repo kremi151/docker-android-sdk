@@ -1,6 +1,5 @@
 FROM adoptopenjdk/openjdk8:alpine
 
-ENV ANDROID_PLATFORM_VERSION android-30
 ENV ANDROID_BUILD_TOOLS_VERSION 30.0.0
 
 ENV ANDROID_HOME /opt/android-sdk
@@ -16,5 +15,5 @@ ENV PATH ${ANDROID_NDK_HOME}:${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/cmdl
 
 RUN yes | sdkmanager --licenses \
     && touch /root/.android/repositories.cfg \
-    && yes | sdkmanager "platform-tools" "platforms;${ANDROID_PLATFORM_VERSION}" "build-tools;${ANDROID_BUILD_TOOLS_VERSION}" \
+    && yes | sdkmanager "platform-tools" "build-tools;${ANDROID_BUILD_TOOLS_VERSION}" \
     && rm -rf ${ANDROID_HOME}/emulator
