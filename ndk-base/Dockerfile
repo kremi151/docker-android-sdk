@@ -16,7 +16,7 @@ RUN mkdir -p /opt/tmp \
     && cd ${ANDROID_NDK_HOME} \
     && rm -rf /opt/tmp
 
-# RUN apk --no-cache add gcompat
+ENV PATH ${ANDROID_NDK_HOME}/prebuilt/linux-x86_64/bin:${PATH}
 
 RUN mkdir -p ${CMAKE_HOME} \
     && cd ${CMAKE_HOME} \
