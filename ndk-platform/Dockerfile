@@ -1,5 +1,6 @@
 FROM kremi151/android-ndk:base
 
 ARG ANDROID_PLATFORM_VERSION
+ARG ANDROID_BUILD_TOOLS_VERSION
 
-RUN yes | sdkmanager "platforms;${ANDROID_PLATFORM_VERSION}"
+RUN yes | sdkmanager "platforms;${ANDROID_PLATFORM_VERSION}" "build-tools;${ANDROID_BUILD_TOOLS_VERSION}"

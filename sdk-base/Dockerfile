@@ -1,7 +1,5 @@
 FROM adoptopenjdk/openjdk8:alpine
 
-ENV ANDROID_BUILD_TOOLS_VERSION 30.0.0
-
 ENV ANDROID_HOME /opt/android-sdk
 
 RUN apk --no-cache add bash \
@@ -15,5 +13,5 @@ ENV PATH ${ANDROID_NDK_HOME}:${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/cmdl
 
 RUN yes | sdkmanager --licenses \
     && touch /root/.android/repositories.cfg \
-    && yes | sdkmanager "platform-tools" "build-tools;${ANDROID_BUILD_TOOLS_VERSION}" \
+    && yes | sdkmanager "platform-tools" \
     && rm -rf ${ANDROID_HOME}/emulator
