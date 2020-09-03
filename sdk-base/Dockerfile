@@ -13,5 +13,4 @@ ENV PATH ${ANDROID_NDK_HOME}:${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/cmdl
 
 RUN yes | sdkmanager --licenses \
     && touch /root/.android/repositories.cfg \
-    && yes | sdkmanager "platform-tools" \
-    && rm -rf ${ANDROID_HOME}/emulator
+    && yes | sdkmanager "platform-tools"
