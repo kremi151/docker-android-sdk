@@ -1,5 +1,4 @@
 #!/bin/bash
 
-echo "Docker login"
-echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USERNAME --password-stdin
-
+echo "To be implemented"
+exit 1
