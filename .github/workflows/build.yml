@@ -22,3 +22,10 @@ jobs:
 
       - name: Build platform images
         run: ./scripts/build-platform-images.sh
+
+      - name: Push images
+        run: ./scripts/push-images.sh
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+
