@@ -2,7 +2,7 @@ name: Build Docker image
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, rework ]
   schedule:
     - cron: "0 0 1 * *"
 
