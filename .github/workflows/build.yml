@@ -14,80 +14,20 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Build and push base SDK Docker image
-        uses: docker/build-push-action@v1
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-          repository: kremi151/android-sdk
-          path: sdk-base
-          tags: base
+      - name: Build SDK base image
+        run: ./scripts/build-sdk-base.sh
 
-      - name: Build and push android-28 SDK Docker image
-        uses: docker/build-push-action@v1
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-          repository: kremi151/android-sdk
-          path: sdk-platform
-          build_args: ANDROID_PLATFORM_VERSION=android-28,ANDROID_BUILD_TOOLS_VERSION=28.0.3
-          tags: android-28
+      - name: Build NDK base image
+        run: ./scripts/build-ndk-base.sh
 
-      - name: Build and push android-29 SDK Docker image
-        uses: docker/build-push-action@v1
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-          repository: kremi151/android-sdk
-          path: sdk-platform
-          build_args: ANDROID_PLATFORM_VERSION=android-29,ANDROID_BUILD_TOOLS_VERSION=29.0.3
-          tags: android-29
+      - name: Build platform images
+        run: ./scripts/build-platform-images.sh
 
-      - name: Build and push android-30 SDK Docker image
-        uses: docker/build-push-action@v1
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-          repository: kremi151/android-sdk
-          path: sdk-platform
-          build_args: ANDROID_PLATFORM_VERSION=android-30,ANDROID_BUILD_TOOLS_VERSION=30.0.2
-          tags: android-30
+      - name: Docker login
+        run: echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USERNAME --password-stdin
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build and push base NDK Docker image
-        uses: docker/build-push-action@v1
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-          repository: kremi151/android-ndk
-          path: ndk-base
-          tags: base
-
-      - name: Build and push android-28 NDK Docker image
-        uses: docker/build-push-action@v1
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-          repository: kremi151/android-ndk
-          path: ndk-platform
-          build_args: ANDROID_PLATFORM_VERSION=android-28,ANDROID_BUILD_TOOLS_VERSION=28.0.3
-          tags: android-28
-
-      - name: Build and push android-29 NDK Docker image
-        uses: docker/build-push-action@v1
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-          repository: kremi151/android-ndk
-          path: ndk-platform
-          build_args: ANDROID_PLATFORM_VERSION=android-29,ANDROID_BUILD_TOOLS_VERSION=29.0.3
-          tags: android-29
-
-      - name: Build and push android-30 NDK Docker image
-        uses: docker/build-push-action@v1
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-          repository: kremi151/android-ndk
-          path: ndk-platform
-          build_args: ANDROID_PLATFORM_VERSION=android-30,ANDROID_BUILD_TOOLS_VERSION=30.0.2
-          tags: android-30
+      - name: Push images
+        run: ./scripts/push-images.sh
