@@ -1,17 +1,18 @@
 #!/bin/bash
 
 echo "Extract versions from Dockerfiles"
-CMAKE_VERSION=$(cat ndk-base/Dockerfile | grep -oP 'ENV CMAKE_VERSION ([0-9]+\.[0-9]+)$')
-CMAKE_VPATCH=$(cat ndk-base/Dockerfile | grep -oP 'ENV CMAKE_PATCH_VERSION ([0-9]+)$')
+CMAKE_VERSION=$(cat ndk-base/Dockerfile | grep -oP 'ENV CMAKE_VERSION \K([0-9]+\.[0-9]+)$')
+CMAKE_VPATCH=$(cat ndk-base/Dockerfile | grep -oP 'ENV CMAKE_PATCH_VERSION \K([0-9]+)$')
 CMAKE_VERSION="$CMAKE_VERSION.$CMAKE_VPATCH"
 echo "Defined CMake version: $CMAKE_VERSION"
-NINJA_VERSION=$(cat ndk-base/Dockerfile | grep -oP 'ENV NINJA_VERSION ([0-9]+\.[0-9]+(?:\.[0-9]+))$')
+NINJA_VERSION=$(cat ndk-base/Dockerfile | grep -oP 'ENV NINJA_VERSION \K([0-9]+\.[0-9]+(?:\.[0-9]+))$')
 echo "Defined Ninja version: $NINJA_VERSION"
 
 validate_ndk () {
   echo "Validate installed CMake in $1"
   DOUTPUT=$(docker run --rm $1 cmake --version)
   if [[ "$DOUTPUT" =~ $CMAKE_VERSION ]]; then
+    echo "$DOUTPUT"
   else
     >&2 echo "Expected CMake version $CMAKE_VERSION in $1, but got $DOUTPUT"
     exit 1
@@ -19,6 +20,7 @@ validate_ndk () {
   echo "Validate installed Ninja in $1"
   DOUTPUT=$(docker run --rm $1 ninja --version)
   if [[ "$DOUTPUT" =~ $NINJA_VERSION ]]; then
+    echo "$DOUTPUT"
   else
     >&2 echo "Expected Ninja version $NINJA_VERSION in $1, but got $DOUTPUT"
     exit 1

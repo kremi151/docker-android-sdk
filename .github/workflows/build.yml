@@ -23,14 +23,14 @@ jobs:
       - name: Build platform images
         run: ./scripts/build-platform-images.sh
 
+      - name: Validate
+        run: ./scripts/validate.sh
+
       - name: Docker login
         run: echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USERNAME --password-stdin
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-
-      - name: Validate
-        run: ./scripts/validate.sh
 
       - name: Push images
         run: ./scripts/push-images.sh
