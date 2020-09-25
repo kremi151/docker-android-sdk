@@ -33,7 +33,6 @@ while read p; do
   if [[ $p != android-* ]]; then
     continue
   fi
-  fi
   ANDROID_PLATFORM=$(echo "$p" | cut -d, -f 1)
   validate_ndk kremi151/android-ndk:$ANDROID_PLATFORM
 done <images.csv
