@@ -29,5 +29,8 @@ jobs:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
+      - name: Validate
+        run: ./scripts/validate.sh
+
       - name: Push images
         run: ./scripts/push-images.sh
