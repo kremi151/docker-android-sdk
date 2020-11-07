@@ -1,0 +1,10 @@
+#!/bin/bash
+
+cat <<EOF >> local.properties
+sdk.dir=$ANDROID_HOME
+ndk.dir=$ANDROID_NDK_HOME
+cmake.dir=$CMAKE_HOME
+EOF
+
+echo "Successfully generated $(pwd)/local.properties"
+

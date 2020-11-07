@@ -1,0 +1,8 @@
+#!/bin/bash
+
+cat <<EOF >> local.properties
+sdk.dir=$ANDROID_HOME
+EOF
+
+echo "Successfully generated $(pwd)/local.properties"
+
