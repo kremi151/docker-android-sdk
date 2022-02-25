@@ -9,13 +9,13 @@ Minimal Docker image with Android SDK, with focus on building
 |Image name|Tag|Android platform|Has NDK|
 |----------|---|----------------|-------|
 |kremi151/android-sdk|base|N/A|No|
-|kremi151/android-sdk|android-28|API 28 (Android 9)|No|
 |kremi151/android-sdk|android-29|API 29 (Android 10)|No|
 |kremi151/android-sdk|android-30|API 30 (Android 11)|No|
+|kremi151/android-sdk|android-31|API 31 (Android 12)|No|
 |kremi151/android-ndk|base|N/A|Yes|
-|kremi151/android-ndk|android-28|API 28 (Android 9)|Yes|
 |kremi151/android-ndk|android-29|API 29 (Android 10)|Yes|
 |kremi151/android-ndk|android-30|API 30 (Android 11)|Yes|
+|kremi151/android-ndk|android-31|API 31 (Android 12)|Yes|
 
 ## Scripts
 
