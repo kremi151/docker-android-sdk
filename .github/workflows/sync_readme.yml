@@ -6,7 +6,7 @@ on:
 
 jobs:
 
-  build:
+  sync-readme:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -18,3 +18,10 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: kremi151/android-sdk
+
+      - name: Update README for kremi151/android-ndk
+        uses: peter-evans/dockerhub-description@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: kremi151/android-ndk
