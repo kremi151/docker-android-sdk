@@ -9,22 +9,25 @@ on:
 jobs:
 
   build:
+    strategy:
+      matrix:
+        openjdk: [8, 11]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Build SDK base image
-        run: ./scripts/build-sdk-base.sh
+        run: "./scripts/build-sdk-base.sh ${{ matrix.openjdk }}"
 
       - name: Build NDK base image
-        run: ./scripts/build-ndk-base.sh
+        run: "./scripts/build-ndk-base.sh ${{ matrix.openjdk }}"
 
       - name: Build platform images
-        run: ./scripts/build-platform-images.sh
+        run: "./scripts/build-platform-images.sh ${{ matrix.openjdk }}"
 
       - name: Validate
-        run: ./scripts/validate.sh
+        run: "./scripts/validate.sh ${{ matrix.openjdk }}"
 
       - name: Docker login
         run: echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USERNAME --password-stdin
@@ -33,4 +36,4 @@ jobs:
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Push images
-        run: ./scripts/push-images.sh
+        run: "./scripts/push-images.sh ${{ matrix.openjdk }}"

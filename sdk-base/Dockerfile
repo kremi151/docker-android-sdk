@@ -1,4 +1,5 @@
-FROM adoptopenjdk/openjdk8:alpine
+ARG OPENJDK_VERSION=11
+FROM adoptopenjdk/openjdk${OPENJDK_VERSION}:alpine
 
 ENV ANDROID_HOME /opt/android-sdk
 

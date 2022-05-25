@@ -17,6 +17,17 @@ Minimal Docker image with Android SDK, with focus on building
 |kremi151/android-ndk|android-30|API 30 (Android 11)|Yes|
 |kremi151/android-ndk|android-31|API 31 (Android 12)|Yes|
 
+## JDK versions
+
+Docker images are published in two variants: With Open JDK 8 and Open JDK 11.
+
+For Open JDK 11, use the images with `-jdk11` name suffix.
+
+For Open JDK 8, use either the images without or with `-jdk8`suffix.
+
+It is recommended to use images with `-jdk` suffix to ensure to have a constant JDK that's used.
+The default may change in the future.
+
 ## Scripts
 
 The `kremi151/android-sdk` and `kremi151/android-ndk` Docker images provide the following convenience scripts which are globally available:

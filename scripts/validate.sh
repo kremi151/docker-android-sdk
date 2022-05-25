@@ -1,5 +1,11 @@
 #!/bin/bash
 
+if [ "$#" -ne 1 ]; then
+    echo "Expected JDK version as parameter"
+    exit 1
+fi
+OPENJDK_VERSION="$1"
+
 echo "Extract versions from Dockerfiles"
 CMAKE_VERSION=$(cat ndk-base/Dockerfile | grep -oP 'ENV CMAKE_VERSION \K([0-9]+\.[0-9]+)$')
 CMAKE_VPATCH=$(cat ndk-base/Dockerfile | grep -oP 'ENV CMAKE_PATCH_VERSION \K([0-9]+)$')
@@ -27,12 +33,12 @@ validate_ndk () {
   fi
 }
 
-validate_ndk kremi151/android-ndk:base
+validate_ndk "kremi151/android-ndk-jdk${OPENJDK_VERSION}:base"
 
 while read p; do
   if [[ $p != android-* ]]; then
     continue
   fi
   ANDROID_PLATFORM=$(echo "$p" | cut -d, -f 1)
-  validate_ndk kremi151/android-ndk:$ANDROID_PLATFORM
+  validate_ndk "kremi151/android-ndk-jdk${OPENJDK_VERSION}:$ANDROID_PLATFORM"
 done <images.csv
