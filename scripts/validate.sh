@@ -33,12 +33,12 @@ validate_ndk () {
   fi
 }
 
-validate_ndk "kremi151/android-ndk-jdk${OPENJDK_VERSION}:base"
+validate_ndk "kremi151/android-ndk:base-jdk${OPENJDK_VERSION}"
 
 while read p; do
   if [[ $p != android-* ]]; then
     continue
   fi
   ANDROID_PLATFORM=$(echo "$p" | cut -d, -f 1)
-  validate_ndk "kremi151/android-ndk-jdk${OPENJDK_VERSION}:$ANDROID_PLATFORM"
+  validate_ndk "kremi151/android-ndk:${ANDROID_PLATFORM}-jdk${OPENJDK_VERSION}"
 done <images.csv

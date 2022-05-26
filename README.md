@@ -21,12 +21,11 @@ Minimal Docker image with Android SDK, with focus on building
 
 Docker images are published in two variants: With Open JDK 8 and Open JDK 11.
 
-For Open JDK 11, use the images with `-jdk11` name suffix.
+For Open JDK 11, use the images with `-jdk11` tag suffix.
 
-For Open JDK 8, use either the images without or with `-jdk8`suffix.
+For Open JDK 8, use the images with `-jdk8` tag suffix.
 
-It is recommended to use images with `-jdk` suffix to ensure to have a constant JDK that's used.
-The default may change in the future.
+The current default is JDK 8, so the images without specific `jdk` suffix will default to `-jdk8`, but this may change in the future.
 
 ## Scripts
 

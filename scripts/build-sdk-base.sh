@@ -7,5 +7,5 @@ fi
 OPENJDK_VERSION="$1"
 
 echo "Build SDK base image"
-docker build -t "kremi151/android-sdk-jdk${OPENJDK_VERSION}:base" --build-arg OPENJDK_VERSION="$OPENJDK_VERSION" sdk-base
+docker build -t "kremi151/android-sdk:base-jdk${OPENJDK_VERSION}" --build-arg OPENJDK_VERSION="$OPENJDK_VERSION" sdk-base
 
