@@ -1,8 +1,7 @@
 ARG OPENJDK_VERSION=11
 FROM kremi151/android-sdk:base-jdk${OPENJDK_VERSION}
 
-ENV CMAKE_VERSION 3.26
-ENV CMAKE_PATCH_VERSION 4
+ENV CMAKE_VERSION 3.26.4
 ENV ANDROID_NDK_VERSION r25c
 ENV NINJA_VERSION 1.10.2
 
@@ -24,7 +23,7 @@ ENV PATH ${ANDROID_NDK_HOME}/prebuilt/linux-x86_64/bin:${PATH}
 
 RUN mkdir -p ${CMAKE_HOME} \
     && cd ${CMAKE_HOME} \
-    && wget https://cmake.org/files/v${CMAKE_VERSION}/cmake-${CMAKE_VERSION}.${CMAKE_PATCH_VERSION}-Linux-x86_64.tar.gz -O cmake.tar.gz \
+    && wget https://github.com/Kitware/CMake/releases/download/v${CMAKE_VERSION}/cmake-${CMAKE_VERSION}-linux-x86_64.tar.gz -O cmake.tar.gz \
     && tar -xzf cmake.tar.gz \
     && rm cmake.tar.gz
 
