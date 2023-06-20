@@ -27,7 +27,7 @@ RUN mkdir -p ${CMAKE_HOME} \
     && tar -xzf cmake.tar.gz \
     && rm cmake.tar.gz
 
-ENV CMAKE_HOME ${CMAKE_HOME}/cmake-${CMAKE_VERSION}-Linux-x86_64
+ENV CMAKE_HOME ${CMAKE_HOME}/cmake-${CMAKE_VERSION}-linux-x86_64
 
 ENV PATH ${CMAKE_HOME}/bin:${PATH}
 
