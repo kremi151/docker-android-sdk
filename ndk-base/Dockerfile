@@ -13,7 +13,7 @@ COPY android-scripts/* /opt/android-scripts/
 
 RUN mkdir -p /opt/tmp \
     && cd /opt/tmp \
-    && wget https://dl.google.com/android/repository/android-ndk-${ANDROID_NDK_VERSION}-linux-x86_64.zip -O android-ndk.zip \
+    && wget https://dl.google.com/android/repository/android-ndk-${ANDROID_NDK_VERSION}-linux.zip -O android-ndk.zip \
     && unzip -q android-ndk.zip \
     && mv ./android-ndk-${ANDROID_NDK_VERSION} ${ANDROID_NDK_HOME} \
     && cd ${ANDROID_NDK_HOME} \
