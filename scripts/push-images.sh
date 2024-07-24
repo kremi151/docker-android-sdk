@@ -6,7 +6,7 @@ if [ "$#" -ne 1 ]; then
 fi
 OPENJDK_VERSION="$1"
 
-OPENJDK_DEFAULT_VERSION="8"
+OPENJDK_DEFAULT_VERSION="17"
 
 echo "Push SDK base image"
 docker push "kremi151/android-sdk:base-jdk${OPENJDK_VERSION}"

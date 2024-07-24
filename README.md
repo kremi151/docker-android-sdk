@@ -19,13 +19,13 @@ Minimal Docker image with Android SDK, with focus on building
 
 ## JDK versions
 
-Docker images are published in two variants: With Open JDK 8 and Open JDK 11.
+Docker images are published in two variants: With Eclipse Temurin Open JDK 11 and Open JDK 17.
 
 For Open JDK 11, use the images with `-jdk11` tag suffix.
 
-For Open JDK 8, use the images with `-jdk8` tag suffix.
+For Open JDK 17, use the images with `-jdk17` tag suffix.
 
-The current default is JDK 8, so the images without specific `jdk` suffix will default to `-jdk8`, but this may change in the future.
+The current default is JDK 17, so the images without specific `jdk` suffix will default to `-jdk17`.
 
 ## Scripts
 
