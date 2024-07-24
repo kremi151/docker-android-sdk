@@ -11,7 +11,7 @@ jobs:
   build:
     strategy:
       matrix:
-        openjdk: [8, 11]
+        openjdk: [8, 11, 17]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
