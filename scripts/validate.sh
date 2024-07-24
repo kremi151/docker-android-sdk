@@ -6,12 +6,10 @@ if [ "$#" -ne 1 ]; then
 fi
 OPENJDK_VERSION="$1"
 
-echo "Extract versions from Dockerfiles"
-CMAKE_VERSION=$(cat ndk-base/Dockerfile | grep -oP 'ENV CMAKE_VERSION \K([0-9]+\.[0-9]+)$')
-CMAKE_VPATCH=$(cat ndk-base/Dockerfile | grep -oP 'ENV CMAKE_PATCH_VERSION \K([0-9]+)$')
-CMAKE_VERSION="$CMAKE_VERSION.$CMAKE_VPATCH"
+echo "Load .env"
+. .env
+
 echo "Defined CMake version: $CMAKE_VERSION"
-NINJA_VERSION=$(cat ndk-base/Dockerfile | grep -oP 'ENV NINJA_VERSION \K([0-9]+\.[0-9]+(?:\.[0-9]+))$')
 echo "Defined Ninja version: $NINJA_VERSION"
 
 validate_ndk () {
