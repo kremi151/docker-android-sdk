@@ -35,4 +35,5 @@ ENV PATH ${CMAKE_HOME}/bin:${PATH}
 RUN cd ${CMAKE_HOME}/bin \
     && wget https://github.com/ninja-build/ninja/releases/download/v${NINJA_VERSION}/ninja-linux.zip \
     && unzip -q ninja-linux.zip -d . \
-    && rm ninja-linux.zip
+    && rm ninja-linux.zip \
+    && ls -l ${CMAKE_HOME}/bin
