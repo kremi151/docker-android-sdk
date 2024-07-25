@@ -26,7 +26,8 @@ RUN mkdir -p ${CMAKE_HOME} \
     && cd ${CMAKE_HOME} \
     && wget https://github.com/Kitware/CMake/releases/download/v${CMAKE_VERSION}/cmake-${CMAKE_VERSION}-linux-x86_64.tar.gz -O cmake.tar.gz \
     && tar -xzf cmake.tar.gz \
-    && rm cmake.tar.gz
+    && rm cmake.tar.gz \
+    && apk --no-cache add libc6-compat
 
 ENV CMAKE_HOME ${CMAKE_HOME}/cmake-${CMAKE_VERSION}-linux-x86_64
 
