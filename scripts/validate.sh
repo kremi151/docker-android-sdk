@@ -26,7 +26,7 @@ validate_ndk () {
   fi
 
   echo "Validate that Ninja is installed correctly in $1"
-  ninja --version
+  docker run --rm $1 ninja --version
 }
 
 validate_ndk "kremi151/android-ndk:base-jdk${OPENJDK_VERSION}"
