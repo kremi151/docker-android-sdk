@@ -7,7 +7,7 @@ fi
 OPENJDK_VERSION="$1"
 
 echo "Load .env"
-. .env
+source .env
 
 echo "Defined CMake version: $CMAKE_VERSION"
 echo "Defined Ninja version: $NINJA_VERSION"
