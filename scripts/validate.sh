@@ -7,7 +7,7 @@ fi
 OPENJDK_VERSION="$1"
 
 echo "Load .env"
-source .env
+export $(grep -v '^#' .env | xargs)
 
 echo "Defined CMake version: $CMAKE_VERSION"
 echo "Defined Ninja version: $NINJA_VERSION"
