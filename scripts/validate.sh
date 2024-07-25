@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -euo pipefail
+
 if [ "$#" -ne 1 ]; then
     echo "Expected JDK version as parameter"
     exit 1
@@ -22,6 +24,9 @@ validate_ndk () {
     >&2 echo "Expected CMake version $CMAKE_VERSION in $1, but got $DOUTPUT"
     exit 1
   fi
+
+  echo "Validate that Ninja is installed correctly in $1"
+  ninja --version
 }
 
 validate_ndk "kremi151/android-ndk:base-jdk${OPENJDK_VERSION}"
